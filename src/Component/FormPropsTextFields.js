@@ -45,7 +45,7 @@ export default function FormPropsTextFields() {
       <form className={classes.root} noValidate autoComplete="off">
         <div>
           <TextField required id="standard-required" label="user name " 
-          onChange={this.CheckUserEmpty}
+          onChange={CheckUserEmpty}
           fullWidth />       
           <TextField
           required id="standard-password-input"
