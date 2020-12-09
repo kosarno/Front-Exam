@@ -29,9 +29,9 @@ class Aside extends Component {
                     cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" className={classes.circle}/>}>
                     {/* <div className={classes.topContent}></div> */}
                     <div className={classes.content}>
-                        <h2 style={{fontWeight:"bold"}}>بهنام شجاعی</h2>
+                        <h2 style={{fontWeight:"bold"}}>استاد رمضانی</h2>
                         <span style={{fontWeight:"500",
-                    borderBottom:"2px solid silver"}}>963613054</span>
+                    borderBottom:"2px solid silver"}}>بیو  استاد</span>
                     </div>
                         
                         
@@ -44,6 +44,12 @@ class Aside extends Component {
             </Menu.Item>
             <Menu.Item  className={classes.asideItem} key="2" >
               لیست دروس
+            </Menu.Item>
+            <Menu.Item  className={classes.asideItem} key="3" >
+              مشاهده پاسخ ها
+            </Menu.Item>
+            <Menu.Item  className={classes.asideItem} key="4" >
+              ایجاد آزمون
             </Menu.Item>
             
           </Menu>

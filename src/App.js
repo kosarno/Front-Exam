@@ -11,7 +11,6 @@ import Title from './Shared/ContentTitle/Title'
 import classes from './Shared/Sidebar/Aside.module.css'
 
 
-
 function App() {
   // const [SideBarOpen, setSideBarOpen] = useState(true)
 
@@ -29,7 +28,7 @@ function App() {
       <Aside></Aside>
       <Layout className="site-layout">  
         <Header></Header>
-        <Title/>
+        <Title name="عنوان صفحه"/>
         <Content></Content>
         </Layout>
           
