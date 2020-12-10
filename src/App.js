@@ -30,9 +30,10 @@ function App() {
       <Layout className="site-layout">  
         <Header></Header>
         <Title/>
-        <Content></Content>
+        {/* <Content></Content> */}
+        
         </Layout>
-          
+        
       </Layout>
       
     </React.Fragment>
