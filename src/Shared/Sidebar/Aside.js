@@ -5,10 +5,12 @@ import classes from './Aside.module.css';
 import {Layout, Menu} from 'antd'
 import { DashboardRounded } from '@material-ui/icons';
 import './ClockCard.css'
-
+import Clockiv from '../../Component/Clockiv'
+import Jalalidate from '../../Component/Jalalidate'
 
 class Aside extends Component {
     
+
     onCollapse = () =>{
                  this.setState(prevState => ({
                     collapsed: !prevState.collapsed
@@ -19,6 +21,7 @@ class Aside extends Component {
     render(){
         const {Sider} = Layout;
         const { SubMenu } = Menu;
+        
         return(
             <Sider className= {classes.aside} theme="light" 
             >
@@ -50,11 +53,11 @@ class Aside extends Component {
                 <div class="courses-container">
                     <div class="course">
                         <div class="course-preview">
-                            
+                        <Clockiv/>
                         </div>
                         <div class="course-info">
                             <div class="progress-container">
-                            
+                            <Jalalidate/>
                             </div>
                             
                         </div>
