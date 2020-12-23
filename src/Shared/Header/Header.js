@@ -12,7 +12,7 @@ class Header extends Component {
     render() {
         const {Header} = Layout;
         return (
-        <Header className="mainHeader ">
+        <Header className="mainHeader " fixed>
           
             <Logo/>
             {/* <Clock renderHourMarks={true}

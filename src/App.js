@@ -1,3 +1,4 @@
+
 import logo from './logo.svg';
 import React, { PureComponent } from 'react'
 import Clock from 'react-clock'
@@ -9,7 +10,6 @@ import Aside from './Shared/Sidebar/Aside'
 import Content from './Shared/Content'
 import Title from './Shared/ContentTitle/Title'
 import classes from './Shared/Sidebar/Aside.module.css'
-
 
 
 function App() {
@@ -29,11 +29,10 @@ function App() {
       <Aside></Aside>
       <Layout className="site-layout">  
         <Header></Header>
-        <Title/>
-        {/* <Content></Content> */}
-        
+        <Title name="عنوان صفحه"/>
+        <Content></Content>
         </Layout>
-        
+          
       </Layout>
       
     </React.Fragment>

@@ -1,4 +1,5 @@
 
+
 * {
 	box-sizing: border-box;
 }
@@ -11,10 +12,11 @@
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	/* display: flex; */
+	display: flex;
 	max-width: 100%;
 	margin-top: 10px;
     overflow: hidden;
+    height: 150px;
 }
 
 .course h6 {
@@ -30,12 +32,9 @@
 }
 
 .course-preview {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	display: grid!important;
-	justify-content: center;
+	background-color: #2A265F;
 	color: #fff;
-	width: 100%;
+	width: 130px;
 }
 
 
@@ -250,4 +249,3 @@
 	.floating-btn {
 		right: 10px;
 	}
-}

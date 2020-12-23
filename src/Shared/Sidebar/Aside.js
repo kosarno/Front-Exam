@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { Card, Col, Divider, Row } from 'antd';
 import 'antd/dist/antd.css';
@@ -5,12 +6,10 @@ import classes from './Aside.module.css';
 import {Layout, Menu} from 'antd'
 import { DashboardRounded } from '@material-ui/icons';
 import './ClockCard.css'
-import Clockiv from '../../Component/Clockiv'
-import Jalalidate from '../../Component/Jalalidate'
+
 
 class Aside extends Component {
     
-
     onCollapse = () =>{
                  this.setState(prevState => ({
                     collapsed: !prevState.collapsed
@@ -21,7 +20,6 @@ class Aside extends Component {
     render(){
         const {Sider} = Layout;
         const { SubMenu } = Menu;
-        
         return(
             <Sider className= {classes.aside} theme="light" 
             >
@@ -32,9 +30,9 @@ class Aside extends Component {
                     cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" className={classes.circle}/>}>
                     {/* <div className={classes.topContent}></div> */}
                     <div className={classes.content}>
-                        <h2 style={{fontWeight:"bold"}}>بهنام شجاعی</h2>
+                        <h2 style={{fontWeight:"bold"}}>استاد رمضانی</h2>
                         <span style={{fontWeight:"500",
-                    borderBottom:"2px solid silver"}}>963613054</span>
+                    borderBottom:"2px solid silver"}}>بیو  استاد</span>
                     </div>
                         
                         
@@ -48,16 +46,22 @@ class Aside extends Component {
             <Menu.Item  className={classes.asideItem} key="2" >
               لیست دروس
             </Menu.Item>
+            <Menu.Item  className={classes.asideItem} key="3" >
+              مشاهده پاسخ ها
+            </Menu.Item>
+            <Menu.Item  className={classes.asideItem} key="4" >
+              ایجاد آزمون
+            </Menu.Item>
             
           </Menu>
                 <div class="courses-container">
                     <div class="course">
                         <div class="course-preview">
-                        <Clockiv/>
+                            
                         </div>
                         <div class="course-info">
                             <div class="progress-container">
-                            <Jalalidate/>
+                            
                             </div>
                             
                         </div>
@@ -78,5 +82,6 @@ class Aside extends Component {
         );
     }
 }
+
 
 export default Aside;
