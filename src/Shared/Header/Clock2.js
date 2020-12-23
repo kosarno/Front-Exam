@@ -1,4 +1,3 @@
-
 import React from 'react'
   
   class Clock extends React.Component {
@@ -174,5 +173,6 @@ import React from 'react'
 //      timeFormat: React.PropTypes.string,
 //      hourFormat: React.PropTypes.string
 //   };
+  
   
   

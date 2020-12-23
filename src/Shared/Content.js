@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Layout} from 'antd';
 import ColapseTable from './Tables/CollapsibleTable'
+import DataTable from '../Teacher/RecentExams'
 import str from './Strings'
 import classes from './Content.module.css';
 import date from './jDate';
@@ -12,7 +13,7 @@ class Content extends Component {
 
     
     render(){
-        let time = new Date()
+       
         const {Content} = Layout;
         return (
             <Content className={classes.content}>
@@ -26,9 +27,8 @@ class Content extends Component {
                 {/* <Form /> */}
                 {/* <Test choices={["a","b","c","d"]}/>
                 <Desc /> */}
-                {/* <ColapseTable mainHeadcells={str.PROFESSORS_COURSES_LIST} headcells={str.PROFESSORS_EXAMS_LIST}/> */}
-                <Ex mainHeadcells={str.PROFESSORS_EXAMS_LIST} headcells={str.PROFESSORS_EXAMS_STUDENTS_LIST}/>
-
+                <DataTable headcells={str.PROFESSORS_RECENT_EXAMS}/>
+                {/* <Ex mainHeadcells={str.PROFESSORS_EXAMS_LIST} headcells={str.PROFESSORS_EXAMS_STUDENTS_LIST} /> */}
             </Content>
             
         )

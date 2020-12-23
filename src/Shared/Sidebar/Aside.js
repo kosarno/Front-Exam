@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react'
-import { Card, Col, Divider, Row } from 'antd';
+import { Card, Col, Divider, Row , List , Avatar,  } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import classes from './Aside.module.css';
 import {Layout, Menu} from 'antd'
@@ -27,7 +27,9 @@ class Aside extends Component {
                 <Col span={24}>
                     <Card 
                     className={ classes.profileCard}
-                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" className={classes.circle}/>}>
+                    cover={    
+                        <Avatar size={144} icon={<UserOutlined/>} 
+                        className={classes.circle}/>}>
                     {/* <div className={classes.topContent}></div> */}
                     <div className={classes.content}>
                         <h2 style={{fontWeight:"bold"}}>استاد رمضانی</h2>
@@ -82,6 +84,5 @@ class Aside extends Component {
         );
     }
 }
-
 
 export default Aside;

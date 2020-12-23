@@ -266,10 +266,11 @@ const rows = [
   createData('هوش مصنوعی', 1234,)
 ];
 
-const CollapsibleTable = props=> {
+const CollapsibleTable = props => {
     const mainHeadcells=props.mainHeadcells
     const headcells=props.headcells
 
+  
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">

@@ -1,12 +1,14 @@
 var Routes = [
     {
-      path: "/dashboard",
-      name: "RecentExams",
+      path: "/dashboard/",
+      title: "آزمون های اخیر",
       icon: ,
       component: recentExam.js,
-      Rule:,
-    },
-    {
+      Rule:adimn-prof-stu,
+      
+      }
+    ,
+    { 
         path: "/CourseList",
         name: "CourseList",
         icon: ,
