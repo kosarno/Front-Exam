@@ -1,14 +1,21 @@
 import logo from './logo.svg';
 import React, { PureComponent } from 'react'
-import Clock from 'react-clock'
 
-import {Layout, Divider, Col, Row} from 'antd'
-import './App.css';
-import Header from './Shared/Header/Header'
-import Aside from './Shared/Sidebar/Aside'
-import Content from './Shared/Content'
-import Title from './Shared/ContentTitle/Title'
-import classes from './Shared/Sidebar/Aside.module.css'
+import str from './Shared/Strings'
+import Clock from 'react-clock'
+import RecentExams from "./Teacher/RecentExams"
+import ExamResult from "./Teacher/ExamResults"
+import CreateExam from "./Teacher/CreateExamForm"
+import CourseList from "./Shared/Tables/CollapsibleTable"
+
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
 
 
 function App() {
@@ -22,19 +29,38 @@ function App() {
   // let contentClassname = sidebarOpen ? 'content open' : 'content';
 
   return (
-    <React.Fragment>
-      
+
+    <Router>
       <Layout className="container" style={{height:'100vh'}}>
-      <Aside></Aside>
+      <Aside />
       <Layout className="site-layout">  
-        <Header></Header>
-        <Title name="عنوان صفحه"/>
-        <Content></Content>
+        <Header />
+        <Switch>
+          <Redirect exact from="/" to="/recentExam" />
+          <Route exact path="/recentExam">
+            <Title name="آزمون های اخیر"/>    
+            <RecentExams headcells={str.PROFESSORS_RECENT_EXAMS}  />
+          </Route>
+          <Route exact path="/courses">
+            <Title name="لیست دروس"/>    
+            <CourseList headcells={str.PROFESSORS_EXAMS_LIST} mainHeadcells={str.PROFESSORS_COURSES_LIST} />
+          </Route>
+          <Route exact path="/createExam">
+          <Title name="ایجاد آزمون"/>    
+          <CreateExam />
+          </Route>
+          <Route exact path="/results">
+          <Title name="نتایج آزمون"/>    
+            <ExamResult mainHeadcells={str.PROFESSORS_EXAMS_LIST} headcells={str.PROFESSORS_EXAMS_STUDENTS_LIST} />
+          </Route>
+        </Switch>
+
         </Layout>
           
       </Layout>
       
-    </React.Fragment>
+
+    </Router>
   );
 }
 

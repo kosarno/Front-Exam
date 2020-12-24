@@ -23,11 +23,18 @@ class Content extends Component {
                 </div> */}
 
                 {/* <Test choices={["a","b","c","d"]}/> */}
+
+                {/* <Form /> */}
+                {/* <Test choices={["a","b","c","d"]}/>
+                <Desc /> */}
+                
+
                 {/* <ColapseTable headcells={str.STUDENTS_RECENT_EXAMS}  /> */}
                 {/* <Form /> */}
                 {/* <Test choices={["a","b","c","d"]}/>
                 <Desc /> */}
                 <DataTable headcells={str.PROFESSORS_RECENT_EXAMS}/>
+
                 {/* <Ex mainHeadcells={str.PROFESSORS_EXAMS_LIST} headcells={str.PROFESSORS_EXAMS_STUDENTS_LIST} /> */}
             </Content>
             

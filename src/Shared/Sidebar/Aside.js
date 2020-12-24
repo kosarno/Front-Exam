@@ -7,6 +7,9 @@ import {Layout, Menu} from 'antd'
 import { DashboardRounded } from '@material-ui/icons';
 import './ClockCard.css'
 
+import {
+    Link
+  } from "react-router-dom";
 
 class Aside extends Component {
     
@@ -42,18 +45,32 @@ class Aside extends Component {
                 </Col>
                 <Col span={24}>
                 <Menu style={{backgroundColor:" #f0f2f5" , marginTop:"20px"}} theme="light" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item className={classes.asideItem} key="1" >
-              آزمون های اخیر
-            </Menu.Item>
-            <Menu.Item  className={classes.asideItem} key="2" >
-              لیست دروس
-            </Menu.Item>
-            <Menu.Item  className={classes.asideItem} key="3" >
-              مشاهده پاسخ ها
-            </Menu.Item>
-            <Menu.Item  className={classes.asideItem} key="4" >
-              ایجاد آزمون
-            </Menu.Item>
+
+            
+                <Menu.Item className={classes.asideItem} key="1" >
+                    <Link  to="/recentExam">
+                        آزمون های اخیر
+                    </Link>
+                </Menu.Item>
+        
+                <Menu.Item  className={classes.asideItem} key="2" >
+                <Link to="/courses">
+                    لیست دروس
+                </Link>
+                </Menu.Item>
+            
+            
+                <Menu.Item  className={classes.asideItem} key="3" >
+                    <Link to="/results">
+                        مشاهده پاسخ ها
+                    </Link>
+                </Menu.Item>
+    
+                <Menu.Item  className={classes.asideItem} key="4" >
+                    <Link to="/createExam"> 
+                        ایجاد آزمون
+                    </Link>
+                </Menu.Item>
             
           </Menu>
                 <div class="courses-container">
