@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import React, { PureComponent } from 'react'
+
 import str from './Shared/Strings'
 import Clock from 'react-clock'
 import RecentExams from "./Teacher/RecentExams"
@@ -7,13 +8,7 @@ import ExamResult from "./Teacher/ExamResults"
 import CreateExam from "./Teacher/CreateExamForm"
 import CourseList from "./Shared/Tables/CollapsibleTable"
 
-import {Layout, Divider, Col, Row} from 'antd'
-import './App.css';
-import Header from './Shared/Header/Header'
-import Aside from './Shared/Sidebar/Aside'
-import Content from './Shared/Content'
-import Title from './Shared/ContentTitle/Title'
-import classes from './Shared/Sidebar/Aside.module.css'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +29,7 @@ function App() {
   // let contentClassname = sidebarOpen ? 'content open' : 'content';
 
   return (
+
     <Router>
       <Layout className="container" style={{height:'100vh'}}>
       <Aside />
@@ -63,6 +59,7 @@ function App() {
           
       </Layout>
       
+
     </Router>
   );
 }
