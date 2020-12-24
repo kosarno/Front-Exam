@@ -22,7 +22,6 @@ function ExamResult(Props) {
   };
 
   const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
     setTimeout(() => {
       setVisible(false);
@@ -31,7 +30,6 @@ function ExamResult(Props) {
   };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
     setVisible(false);
   };
     return (

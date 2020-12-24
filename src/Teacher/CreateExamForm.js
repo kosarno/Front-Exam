@@ -4,7 +4,10 @@ import {Calendar} from 'react-persian-datepicker';
 import {Theme} from './CreateExamFormStyle';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { myTheme } from './CreateExamFormStyle';
-
+import { DatePicker as DatePickerJalali} from "antd-jalali";
+import fa_IR from "antd/lib/locale/fa_IR";
+import en_US from "antd/lib/locale/en_US";
+import "antd/dist/antd.css";
 
 
 import {
@@ -17,6 +20,7 @@ import {
   InputNumber,
   TreeSelect,
   Switch,
+  ConfigProvider
 } from 'antd';
 const CreateExamForm = () => {
 
@@ -27,9 +31,28 @@ const CreateExamForm = () => {
     setComponentSize(size);
   };
 
-  function onFinish(value){
-    console.log(value)
-  }
+  const config = {
+    rules: [{ type: 'object', required: true, message: 'Please select time!' }],
+  };
+  const rangeConfig = {
+    rules: [{ type: 'array', required: true, message: 'Please select time!' }],
+  };
+  const onFinish = (fieldsValue) => {
+    // Should format date value before submit.
+    const rangeTimeValue = document.querySelector('.abc').value;
+    console.log(rangeTimeValue);
+    // const values = {
+    //   ...fieldsValue,
+    
+    //   'range-time-picker': [
+    //     rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
+    //     rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
+    //   ],
+    //   'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
+    // };
+    // console.log('Received values of form: ', values);
+  };
+
   // useEffect(() => {
   //   const requestOptions = {
   //     method: 'GET',
@@ -92,20 +115,19 @@ const CreateExamForm = () => {
         </Form.Item>
         
         <Form.Item label="تاریخ شروع آزمون"
-        name="startDate"
-        required
-        rules={[{ required: true, message: 'لطفا تاریخ شروع آزمون را انتخاب کنید' }]}
+        name="range-time-picker"
         >
-          
-          <DatePicker theme={Theme}  />
+          <ConfigProvider locale={fa_IR}  direction="rtl">
+           <DatePickerJalali.RangePicker         className="abc"  showTime format="YYYY-MM-DD HH:mm:ss" /> 
+          </ConfigProvider>
         </Form.Item>
-        <Form.Item label="تاریخ پایان آزمون"
+        {/* <Form.Item label="تاریخ پایان آزمون"
         name="endDate"
         required 
         rules={[{ required: true, message: 'لطفا تاریخ پایان آزمون را انتخاب کنید' }]}
         >
           <DatePicker theme={Theme}  />
-        </Form.Item >
+        </Form.Item > */}
         <Form.Item label="درهم سازی سوالات"
         name="randomization"
         wrapperCol={{span:4}}>
@@ -113,7 +135,7 @@ const CreateExamForm = () => {
           <Switch 
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
-              defaultChecked />
+              defaultUnchecked />
               
         </Form.Item>
         <Form.Item>

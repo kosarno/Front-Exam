@@ -50,7 +50,7 @@ export default {
         { id: 'carbs', numeric: true, disablePadding: false, label: 'وضعیت' },
         { id: 'protein', numeric: true, disablePadding: false, label: 'مدت برگزاری' },
         { id: 'protein', numeric: true, disablePadding: false, label: '' },
-        { id: 'protein', numeric: true, disablePadding: false, label: '' }
+
     ],
     STUDENTS_RECENT_EXAMS:[
         { id: 'name', numeric: false, disablePadding: true, label: 'عنوان آزمون' },
