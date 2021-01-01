@@ -234,9 +234,9 @@ function d2g(jdn) {
           , gd: gd
           }
 }
-
+s
 /*
-  Utility helper functions.
+  This is a test.
 */
 
 function div(a, b) {
