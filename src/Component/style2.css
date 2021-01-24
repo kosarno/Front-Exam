@@ -1,0 +1,13 @@
+body{
+    background-color:white;
+}
+
+
+.styleNotFound{
+    max-width:  300px;
+    margin: 'outo';
+    padding: 2.5 rem;
+    margin-top: 40px;
+    border : 1 px solid #eee;
+    box-shadow : 0 2px 2px #ccc
+}

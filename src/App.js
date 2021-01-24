@@ -8,6 +8,7 @@ import Header from './Shared/Header/Header'
 import Aside from './Shared/Sidebar/Aside'
 import Content from './Shared/Content'
 import Title from './Shared/ContentTitle/Title'
+import NotFound from './Component/NotFound'
 import classes from './Shared/Sidebar/Aside.module.css'
 
 
@@ -28,7 +29,9 @@ function App() {
       <Layout className="container" style={{height:'100vh'}}>
       <Aside></Aside>
       <Layout className="site-layout">  
-        <Header></Header>
+        
+          <NotFound/> 
+       
         <Title/>
         <Content></Content>
         </Layout>
