@@ -1,28 +1,24 @@
-import React, { useContext } from 'react'
+import React, { Component } from 'react'
 import { Card, Col, Divider, Row , List , Avatar,  } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import classes from './Aside.module.css';
 import {Layout, Menu} from 'antd'
 import { DashboardRounded } from '@material-ui/icons';
-import {myContext} from '../../App'
 import './ClockCard.css'
 
 import {
     Link
   } from "react-router-dom";
 
-function PROAside() {
-    const userContext= useContext(myContext)
-    const {Sider} = Layout;
-    const { SubMenu } = Menu;
-    const handleLogout=()=>{
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
-        userContext.userDispatch('userLogout')
-    }
+function STUAside () {
+    
+   
 
-    return (    
+   
+        const {Sider} = Layout;
+        const { SubMenu } = Menu;
+        return(
             <Sider className= {classes.aside} theme="light" 
             >
             <Row>
@@ -47,34 +43,12 @@ function PROAside() {
 
             
                 <Menu.Item className={classes.asideItem} key="1" >
-                    <Link  to="/recentExam">
+                    <Link  to="/recentExams">
                         آزمون های اخیر
                     </Link>
                 </Menu.Item>
         
-                <Menu.Item  className={classes.asideItem} key="2" >
-                <Link to="/courses">
-                    لیست دروس
-                </Link>
-                </Menu.Item>
-            
-            
-                <Menu.Item  className={classes.asideItem} key="3" >
-                    <Link to="/results">
-                        مشاهده پاسخ ها
-                    </Link>
-                </Menu.Item>
-    
-                <Menu.Item  className={classes.asideItem} key="4" >
-                    <Link to="/createExam"> 
-                        ایجاد آزمون
-                    </Link>
-                </Menu.Item>
-                <Menu.Item  className={classes.asideItem} key="4" onClick={handleLogout}>
-                    <Link to="/"> 
-                        خروج
-                    </Link>
-                </Menu.Item>
+               
             
           </Menu>
                 <div class="courses-container">
@@ -102,8 +76,8 @@ function PROAside() {
                 
             </Sider>
             
-        
-    )
-}
+        );
+    }
 
-export default PROAside;
+
+export default STUAside;
