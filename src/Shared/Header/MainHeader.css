@@ -1,7 +1,7 @@
 .mainHeader {
     border-radius: 10px;
-    margin-left: 18px;
-    margin-right: 18px;
+    /* margin-left: 18px;
+    margin-right: 18px; */
     height: 5rem !important;
     display: flex;
     align-items: center;

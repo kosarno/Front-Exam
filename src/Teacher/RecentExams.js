@@ -1,6 +1,6 @@
                 
                 
-import React ,{useEffect} from 'react';
+import React ,{useEffect,useReducer,useState,useContext} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -22,6 +22,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import {checkExpiry} from '../Component/checkToken'
+import {myContext} from '../App'
+import decode from 'jwt-decode'
 import {Button} from 'antd'
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -54,24 +57,6 @@ const theme = createMuiTheme({
 });
 
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('سجاد' , 200 ,33 , 13 , 22),
-    createData('علی' , 300 ,32 , 12 , 20),
-    createData('احمد' , 300 ,33 , 13 , 22),
-    createData('کامران' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),
-    createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),createData('بهنام' , 300 ,33 , 13 , 22),
-];
-
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -99,7 +84,7 @@ function stableSort(array, comparator) {
 }
 
 
-
+const fakeRows=[{title:'a'},{title:'b'}]
 function EnhancedTableHead(props) {
     const { headers, classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
@@ -251,9 +236,18 @@ const useStyles = makeStyles((theme) => ({
         // text_align: 'right'
     },
 }));
-
+ function dataReducer (state,action){
+    switch(action){
+        case 'fillData':
+            return state = action.value
+        break;
+    }
+ }
 const DataTable = props => {
+        // var  dataRows = [];
+        
         const classes = useStyles();
+        const userContext = useContext(myContext)
         const [order, setOrder] = React.useState('asc');
         const [orderBy, setOrderBy] = React.useState('calories');
         const [selected, setSelected] = React.useState([]);
@@ -261,6 +255,9 @@ const DataTable = props => {
         const [dense, setDense] = React.useState(false);
         const [rowsPerPage, setRowsPerPage] = React.useState(5);
         const [examState , setExamState]=React.useState('')
+        const [dataState, setData]=useState([])
+
+      
 
         const handleRequestSort = (event, property) => {
             const isAsc = orderBy === property && order === 'asc';
@@ -270,7 +267,7 @@ const DataTable = props => {
 
         const handleSelectAllClick = (event) => {
             if (event.target.checked) {
-                const newSelecteds = rows.map((n) => n.name);
+                const newSelecteds = dataState.map((n) => n.name);
                 setSelected(newSelecteds);
                 return;
             }
@@ -309,30 +306,42 @@ const DataTable = props => {
         const handleChangeDense = (event) => {
             setDense(event.target.checked);
         };
+        
+        useEffect(() => {
+            console.log(decode(localStorage.getItem('accessToken')))
+            console.log(decode(localStorage.getItem('refreshToken')))
+            console.log(new Date().getTime()/1000)
+            
+            if(!checkExpiry(decode(localStorage.getItem('accessToken')).exp, decode(localStorage.getItem('refreshToken')).exp))
+            {userContext.userDispatch('userLogout')}
+            else{
+            var myHeaders= new Headers()
+            myHeaders.append("Content-type","application/json")
+            myHeaders.append("Authorization", `Bearer ${localStorage.getItem('accessToken')}`);
 
+            fetch("http://171.22.24.129/exam/design-exam/exams", {method:"GET", headers:myHeaders})
+            .then((r) =>{ 
+                if(r.status==403){setData([{title:"آزمونی برای نمایش وجود ندارد"}])}return r.json()})
+            .then((d) => {setData(d.results)
+            console.log('aaa');});
+            }
+        },[])
         const isSelected = (name) => selected.indexOf(name) !== -1;
-        const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+        // if(dataState.length==undefined){
+        // const emptyRows = rowsPerPage - Math.min(rowsPerPage, fakeRows.length - page * rowsPerPage);
+        // }
+        // const emptyRows = rowsPerPage - Math.min(rowsPerPage, dataState.length - page * rowsPerPage);
+
 
         // const [examState, setExamState] = useState({})
-        useEffect(() => {
-            fetch('http://171.22.24.129/exam/2/')
-            .then((r)=>{
-                console.log(r)
-                // setExamState({examTitle:, courseId:, examState:,})
-            })
-            .catch(
-
-            )
-            // return () => {
-            //     cleanup
-            // }
-        }, [])
+      
         //headcells---------------
         const headers=props.headcells
 
         const passedExam=true
 
-        return ( <div className = { classes.root }  >
+        return ( 
+        <div className = { classes.root }  >
             <Paper className = { classes.paper } >
              <
             TableContainer >
@@ -349,15 +358,15 @@ const DataTable = props => {
             orderBy = { orderBy }
             onSelectAllClick = { handleSelectAllClick }
             onRequestSort = { handleRequestSort }
-            rowCount = { rows.length }
+            rowCount = { dataState.length }
             /> <
             TableBody > {
-                stableSort(rows, getComparator(order, orderBy))
+                stableSort(dataState, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                    const isItemSelected = isSelected(row.name);
+                    console.log(dataState)
+                    const isItemSelected = isSelected(row.title);
                     const labelId = `enhanced-table-checkbox-${index}`;
-
                     return ( <
                         TableRow hover  >
                         <
@@ -370,36 +379,26 @@ const DataTable = props => {
                         id = { labelId }
                         scope = "row"
                         padding = "none"
-                        style={{fontFamily:"Samim"}} > { row.name } <
+                        style={{fontFamily:"Samim"}} > { row.title } <
                         /TableCell> <
-                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.calories } < /TableCell> <
-                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.fat } < /TableCell> <
-                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.carbs } < /TableCell> <
-                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.protein } < /TableCell>
-                        {passedExam? 
+                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.courseID } < /TableCell> <
+                        TableCell align = "right" style={{fontFamily:"Samim"}}>  { row.courseID }< /TableCell> <
+                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.courseID } < /TableCell> <
+                        TableCell align = "right" style={{fontFamily:"Samim"}}> { row.courseID } < /TableCell>
+                        {row.status=="held"? 
                         <TableCell align="right" style={{fontFamily:"Samim"}}>
-                            <Button type="primary" style={{borderRadius:"15px", fontSize:"10px" }} >مشاهده پاسخ </Button>
+                            <Button type="primary" style={{borderRadius:"15px", fontSize:"10px" }} id={row.id} >مشاهده پاسخ </Button>
                         </TableCell> :
                         <TableCell align="right" style={{fontFamily:"Samim"}}>
                         
-                            <Button type="primary" style={{borderRadius:"15px", fontSize:"10px" }} > ویرایش سوالات</Button>
+                            <Button type="primary" style={{borderRadius:"15px", fontSize:"10px" }} > ویرایش </Button>
                         </TableCell>
                         }    
                        < /
                         TableRow >
                     );
                 })
-            } {
-                emptyRows > 0 && ( <
-                    TableRow style = {
-                        { height: (dense ? 33 : 53) * emptyRows }
-                    } >
-                    <
-                    TableCell colSpan = { 0 }
-                    /> < /
-                    TableRow >
-                )
-            } <
+            }  <
             /TableBody> < /
             Table > <
             /TableContainer> <
@@ -409,7 +408,7 @@ const DataTable = props => {
             component = "div"
             labelRowsPerPage = "  تعداد در هر صفحه"
             
-            count = { rows.length }
+            count = { dataState.length }
             rowsPerPage = { rowsPerPage }
             page = { page }
             onChangePage = { handleChangePage }
