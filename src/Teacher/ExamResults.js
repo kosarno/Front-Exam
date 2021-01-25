@@ -81,7 +81,10 @@ function Rows(props) {
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+          <IconButton aria-label="expand row" size="small"
+          onClick={() => setOpen(!open)
+          // fetch('171.22.24.129/exam/design-exam/exam</TableCell>')
+          }>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -269,8 +272,23 @@ const rows = [
 const CollapsibleTable = props => {
     const mainHeadcells=props.mainHeadcells
     const headcells=props.headcells
+  //   const [rows , setRows]=useState([{title:"آزمونی برای نمایش وجود ندارد"}])
+  //   useEffect(() => {
+  //     if(!checkExpiry(decode(localStorage.getItem('accessToken')).exp, decode(localStorage.getItem('refreshToken')).exp))
+  //     {userContext.userDispatch('userLogout')}
+  //     else{
+  //     var myHeaders= new Headers()
+  //     myHeaders.append("Content-type","application/json")
+  //     myHeaders.append("Authorization", `Bearer ${localStorage.getItem('accessToken')}`);
 
-  
+  //     fetch("http://171.22.24.129/exam/design-exam/exams", {method:"GET", headers:myHeaders})
+  //     .then((r) =>{ 
+  //         return r.json()})
+  //     .then((d) => {setRows(d.results)
+  //     console.log('aaa');});
+  //     }
+  // },[])
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
